@@ -18,8 +18,8 @@ event OnEffectStart(Actor target, Actor caster)
         Actor deadPerson = target.PlaceAtMe(baseHod, abInitiallyDisabled = true) as Actor
         ; target.MoveTo(target, )
         DeadPeople[i] = deadPerson
-        ; deadPerson.AddSpell(ISeeDeadPeople_GhostAbility)
-        deadPerson.EnableAI(false)
+        deadPerson.AddSpell(ISeeDeadPeople_GhostAbility)
+        ; deadPerson.EnableAI(false)
         i += 1
     endWhile
 
@@ -27,7 +27,7 @@ event OnEffectStart(Actor target, Actor caster)
 
     i = 0
     while i < count
-        DeadPeople[i].Enable()
+        DeadPeople[i].Enable(abFadeIn = true)
         DeadPeople[i].AddSpell(ISeeDeadPeople_GhostAbility)
         i += 1
     endWhile
@@ -36,11 +36,12 @@ event OnEffectStart(Actor target, Actor caster)
 endEvent
 
 event OnEffectFinish(Actor target, Actor caster)
-    EtherealISM.Remove()
-
     int i = 0
     while i < DeadPeople.Length
+        DeadPeople[i].Disable(abFadeOut = true)
         DeadPeople[i].Delete()
         i += 1
     endWhile
+
+    EtherealISM.Remove()
 endEvent
