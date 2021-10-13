@@ -7,7 +7,7 @@ event OnEffectStart(Actor target, Actor caster)
     target.AddSpell(GhostAbilityFire)
     target.AddSpell(GhostAbilityFrost)
     Utility.WaitMenuMode(0.5)
-    target.SetAlpha(0.6)
+    target.SetAlpha(0.4)
 endEvent
 
 event OnEffectFinish(Actor target, Actor caster)
